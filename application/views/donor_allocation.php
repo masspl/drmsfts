@@ -90,29 +90,6 @@
                                   </div>
                               </div>
 
-                              <!-- <table class="table control-group">
-                                 
-                                <h3>School Details</h3>
-                                <thead style="border: 2px solid black;">
-                                  <tr>
-                                      <th>State&emsp;&emsp;&emsp;</th>
-                                      <th>Region Name</th>
-                                      <th>Region Code</th>
-                                      <th>Anchal Name</th>
-                                      <th>Anchal Code</th>
-                                      <th>School Name</th>
-                                      <th>School Code</th>
-                                      <th>Funding Chapter</th>
-                                      <th>Select All<input type="checkbox" id="select-all" name="" value=""></th>
-                                  </tr>
-                                </theade>
-                                <tbody>
-                                </tbody>
-                                    
-                                </table> -->
-
-                            
-
                                 <div class="form-actions">
                                   <img id="submitLoading" style="display:none;" src="<?=base_url()."assets/img/loading.gif"?>" alt="">
                                   <input type="submit" name="submitThread" id="submit" class="btn btn-success" value="Submit">
@@ -196,47 +173,6 @@
         $(".checkbox").prop("checked", $(this).prop("checked"));
         });
 
-    // $("#submit").click(function() {
-    //     var donorId =donor;
-    //     // alert(donorId);
-    //     $.ajax({
-    //             url: BASE_URL+"administration/uploadDonorId/"+donorId+"/1", 
-    //             success: function(result){
-    //             // console.log(result);
-    //                 // $("#tbody").html(result);
-    //             }
-    //         });
-    //   });
-
-
-    const check= [];
-    $("#submit").click(function() {
-        var donorId =window.donor;
-        let arr = [];
-        let checkboxes = document.querySelectorAll("input[type='checkbox']:checked");
-        for (let i = 0 ; i < checkboxes.length; i++) {
-            arr.push(checkboxes[i].value)
-        }
-
-        var schoolData=JSON.stringify(arr);
-
-            // var checkboxValues = checkedCheckboxes.map(function() {
-            //     return $(this).val();
-            // }).get();
-            // var postData = {
-            //     checkboxes: checkboxValues
-            // };
-            $.ajax({
-                    url: BASE_URL+"administration/uploadDonorId",
-                    data: {'schoolData': schoolData, 'donorId': donorId},
-                    type: 'POST', 
-                    success: function(result){
-                    // console.log(result);
-                        // $("#tbody").html(result);
-                    }
-                });
-            // location.href = BASE_URL+"administration/donor_allocation/"
-          });
     });
 
     

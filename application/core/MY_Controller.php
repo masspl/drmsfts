@@ -225,9 +225,6 @@ class Admin_Controller extends MY_Controller {
             else
                 redirect("login");
         }
-        // if(!$bool){
-        //     redirect("login");
-        // }
     }
 
     public function sendMail($to, $sub, $body, $attachments){
@@ -326,6 +323,12 @@ class Admin_Controller extends MY_Controller {
     public function getSchoolByAnchalCodeORFundingChapter($anchalcode='',$fundingchapter='')
     {
         $sql ="SELECT * FROM mst_sif_details LEFT JOIN mst_funding_chapter ON mfc_id = msd_mfc_id WHERE msd_anchal_code LIKE '$anchalcode' AND msd_mfc_id ='{$fundingchapter}' ORDER BY msd_anchal_code";
+        $schoollist=$this->db->query($sql)->result_array();
+        return $schoollist;     
+    }
+     public function getSchoolByAnchalCodeORMonitoringChapter($anchalcode='',$monitoringchapter='')
+    {
+        $sql ="SELECT * FROM mst_sif_details LEFT JOIN mst_monitoring_chapter ON mmc_id = msd_mmc_id WHERE msd_anchal_code LIKE '$anchalcode' AND msd_mmc_id ='{$monitoringchapter}' ORDER BY msd_anchal_code";
         $schoollist=$this->db->query($sql)->result_array();
         return $schoollist;     
     }

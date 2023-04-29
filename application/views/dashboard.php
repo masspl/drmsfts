@@ -37,11 +37,19 @@
                         </li>
                         <li><a href="#">Dashboard</a><span class="divider-last">&nbsp;</span></li>
                     <?php if($this->session->typeofuser==0 ) { ?>
+                        <a class="btn btn-success" href="fundingChapter"> <span>Funding Chapter</span></a>
                         <a class="btn btn-success" href="fundingChapter/mapFunding"> <span>FC-Allocation</span></a>
+                         <a class="btn btn-success" href="fundingChapter/fcDeallocation"> <span>FC-Deallocation</span></a>
                         <a class="btn btn-success" href="donor/donorAllocation"> <span>Donor-Allocation</span></a>
+                        <a class="btn btn-success" href="donor/donorDeAllocation"> <span>Donor-Deallocation</span></a>
+                        <!-- <a class="btn btn-success" href="monitoringChapter/mapMonitoring"> <span>MC-Allocation</span></a> -->
+                         <a class="btn btn-success" href="monitoringChapter/mcDeallocation"> <span>MC-Deallocation</span></a>
                         <a class="btn btn-success" href="sif/sifEdit"> <span>SIF Edit</span></a>
-                        <a class="btn btn-success" href="report/schoolChapter"> <span>School Under Chapter</span></a>
-                        <a class="btn btn-success" href="login/userCreate"> <span>Create User</span></a>
+                        <a class="btn btn-success" href="sif/sifUpload"> <span>SIF Upload</span></a>
+                        <!-- <a class="btn btn-success" href="report/schoolChapter"> <span>School Under Chapter</span></a> -->
+                        <a class="btn btn-success" href="monitoringChapter"> <span>Monitoring Chapter</span></a>
+
+                        <a class="btn btn-success" href="users/userCreate"> <span>Create User</span></a>
                     <!-- <?php }elseif($this->session->typeofuser==1 ) { ?>
                         <a class="btn btn-success" href="administration/map_funding"> <span>FC-Allocation</span></a>
                     <?php }elseif ($this->session->typeofuser==2) { ?>

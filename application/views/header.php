@@ -24,7 +24,7 @@ Website: http://thevectorlab.net/
         <link href="<?= $cssPath; ?>style_default.css" rel="stylesheet" id="style_color" />
 
         <link href="<?= $asstesPath; ?>fancybox/source/jquery.fancybox.css" rel="stylesheet" />
-        <link rel="stylesheet" type="text/css" href="<?= $asstesPath; ?>uniform/css/uniform.default.css" />
+        <!-- <link rel="stylesheet" type="text/css" href="<?= $asstesPath; ?>uniform/css/uniform.default.css" /> -->
         <link href="<?= $asstesPath; ?>fullcalendar/fullcalendar/bootstrap-fullcalendar.css" rel="stylesheet" />
         <link href="<?= $asstesPath; ?>jqvmap/jqvmap/jqvmap.css" media="screen" rel="stylesheet" type="text/css" />
 
@@ -64,6 +64,9 @@ Website: http://thevectorlab.net/
               top:20%;
               background-repeat:no-repeat;
               background-position:center;
+            }
+             .form-search input, .form-inline input, .form-horizontal input, .form-search textarea, .form-inline textarea, .form-horizontal textarea, .form-search select, .form-inline select, .form-horizontal select, .form-search .help-inline, .form-inline .help-inline, .form-horizontal .help-inline, .form-search .uneditable-input, .form-inline .uneditable-input, .form-horizontal .uneditable-input, .form-search .input-prepend, .form-inline .input-prepend, .form-horizontal .input-prepend, .form-search .input-append, .form-inline .input-append, .form-horizontal .input-append{
+                opacity: 1 !important;
             }
         </style>
     </head>

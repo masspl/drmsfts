@@ -26,14 +26,13 @@
             <div class="row-fluid">
                 <div class="span12">
                     <h3 class="page-title">
-                        Funding Chapter Allocation
+                        Chapter Allocation
                     </h3>
                     <ul class="breadcrumb">
                         <li>
                             <a href="<?php echo base_url() ?>drm#"><i class="icon-home"></i></a><span class="divider">&nbsp;</span>
                         </li>
-                        <li><a href="<?php echo base_url() ?>fundingChapter/mapFunding/">FC Allocation</a><span class="divider-last">&nbsp;</span></li>
-                        <!-- <li><a href="/fts/administration/deallocate_fund/">Deallocate Funding Chapter</a><span class="divider-last ">&nbsp;</span></li> -->
+                        <li><a href="<?php echo base_url() ?>fundingChapter/mapFunding/">Chapter Allocation</a><span class="divider-last">&nbsp;</span></li>
                     </ul>
                 </div>
             </div>
@@ -50,6 +49,18 @@
                         <div class="widget-body form">
                             <!-- BEGIN FORM-->
                             <form action="<?php echo base_url() ?>fundingChapter/mapFundingSchool/" class="form-horizontal" method="POST" enctype="multipart/form-data" onsubmit="">
+                                <div class="control-group">
+                                  <label class="control-label">Monitoring Chapter</label>
+                                  <div class="controls">
+                                      <select class="span6 fundingchapter" name="monitoringchapter">
+                                        <option value=""> -- SELECT -- </option>
+                                        <?php foreach ($chapterDetails as $value) { ?>
+                                            <option value="<?=$value["mmc_id"]?>"><?=$value["mmc_desc"]?></option>
+                                        <?php } ?>
+                                      </select>
+                                  </div>
+                              </div>
+
                                 <div class="control-group">
                                   <label class="control-label">Funding Chapter</label>
                                   <div class="controls">
@@ -83,24 +94,6 @@
                                   </div>
                               </div>
                             
-                             <!--  <table class="table control-group">
-                                <h3>School Details</h3>
-                                <thead style="border: 2px solid black;">
-                                  <tr>
-                                      <th>State</th>
-                                      <th>Region Name</th>
-                                      <th>Region Code</th>
-                                      <th>Anchal Name</th>
-                                      <th>Anchal Code</th>
-                                      <th>School Name</th>
-                                      <th>School Code</th>
-                                      <th>Select All<input type="checkbox" id="select-all" name="" value=""></th>
-                                  </tr>
-                              </thead>
-                                <tbody></tbody>
-                                    
-                                </table> -->
-                              
                                 <div class="form-actions">
                                   <img id="submitLoading" style="display:none;" src="<?=base_url()."assets/img/loading.gif"?>" alt="">
                                   <input type="submit" name="submitThread" id="submit" class="btn btn-success" value="Submit">
@@ -152,44 +145,7 @@
     $("#select-all").click(function() {
         $(".checkbox").prop("checked", $(this).prop("checked"));
         });
-    // function showLoading(){
-    //   $("#submit").hide();
-    //   $("#submitLoading").show();
-    //   }
-    // $("input[type='checkbox']").change(function(){
-    //     $('#abcd').attr('contenteditable', 'true');
-    // });
- const check= [];
-
-
-    $("#submit").click(function() {
-        var fundingchapter =window.fund;
-         // var anchalcode = window.anchal;
-        // confirm(count (arr));
-        let arr = [];
-        let checkboxes = document.querySelectorAll("input[type='checkbox']:checked");
-         for (let i = 0 ; i < checkboxes.length; i++) {
-          arr.push(checkboxes[i].value)
-         }
-
-        var schoolData=JSON.stringify(arr);
-        // var checkboxValues = checkedCheckboxes.map(function() {
-        //     return $(this).val();
-        // }).get();
-        // var postData = {
-        //     checkboxes: checkboxValues
-        // };
-        $.ajax({
-                url: BASE_URL+"administration/uploadFundingChapter",
-                data: {'schoolData': schoolData, 'fundingchapter': fundingchapter},
-                type: 'POST', 
-                success: function(result){
-                console.log(result);
-                    // $("#tbody").html(result);
-                }
-            });
-        location.href = BASE_URL+"administration/map_funding/"
-      });    
+     
     });
 
 </script>

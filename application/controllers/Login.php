@@ -53,31 +53,6 @@ class Login extends MY_Controller {
       $this->load->view('login', $this->data);
     }
 
-    // public function index() {
-    //   if ($this->input->post()){
-    //       $username = $this->input->post("username");
-    //       $pwd = $this->input->post("pwd");
-    //       $user = $this->donors->fetch("md_user_name = '{$username}'");
-    //       if($user['md_password'] == md5($pwd)){
-    //         // echo $user['md_password'];exit;
-    //         $this->session->set_userdata('userID',$user['md_id']);
-    //         $this->session->set_userdata('userType',$user['md_status']);
-    //         $this->session->set_userdata("adminName",$user['md_fname']);
-    //         $this->session->set_userdata("userEmail",$user['md_email']);
-    //         if($user['md_status']){
-    //           redirect("drm/listSchools");
-    //         } else {
-    //           redirect("drm");
-    //         }
-    //       } else {
-    //         $this->session->set_flashdata("error","Please check your credential");
-    //         redirect("login");
-    //       }
-    //   }
-    //   $this->load->view('login', $this->data);
-    // }
-
-    public function forgotPassSubmit(){}
 
     public function logout(){
         $this->session->sess_destroy();
@@ -85,8 +60,4 @@ class Login extends MY_Controller {
     }
 
 
-    public function userCreate()
-    {
-      
-    }
 }

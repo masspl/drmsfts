@@ -1,3 +1,45 @@
+
+<style type="text/css">
+    .selectedschools tr td {
+        padding: 15px 0;
+        text-align: center;
+        width: 33.33%;
+     }
+ </style>
+
+<div id="myModal" class="modal fade" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="display: flex; justify-content: space-between;">
+                    <h5 class="modal-title"></h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                   <table style="width: 100%;">
+                    <thead class="smodalsheades" style="border-bottom: 1px solid rgba(0,0,0,0.2);">
+                       <tr>
+                        <th>Donor Name  <?php echo $getDonor[0]['md_name']; ?></th>
+                        <th>Donor Code  <?php echo $getDonor[0]['md_code']; ?></th>
+                           <th>Funding Chapter:  <?php echo $fund[0]['mfc_desc']; ?></th>
+                           <th>Region:  <?php echo $region; ?></th>
+                           <th>Anchal: <?php echo $anchal; ?></th>
+                       </tr>
+                       </thead>
+              
+
+                       <tbody class="selectedschools">
+                           
+                       </tbody>
+                   </table>
+                </div>
+                <div class="modal-footer" style="text-align: center">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Go Back</button>
+                    <button type="button" class="btn btn-primary confirmsubmit">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 <?php echo $header; ?>
 <div id="container" class="row-fluid">
     <!-- BEGIN SIDEBAR -->
@@ -66,13 +108,15 @@
                                   <tr>
                                     <th>Select All<input type="checkbox" id="select-all" name="" value=""></th>
                                     <th>Sl.No</th>
+                                    <th>School Name</th>
+                                     <th>School Code</th>
                                       <th>State&emsp;&emsp;&emsp;</th>
                                       <th>Region Name</th>
                                       <th>Region Code</th>
                                       <th>Anchal Name</th>
                                       <th>Anchal Code</th>
-                                      <th>School Name</th>
-                                      <th>School Code</th>
+                                      
+                                     
                                       <th>Funding Chapter</th>
                                       
                                   </tr>
@@ -83,13 +127,15 @@
                                     <tr>
                                         <td><input type='checkbox' id='checkbox' name='' value="<?php echo $value['msd_school_code']?>" ></td>
                                         <td><?php echo  $i ?></td>
+                                        <td><?php echo $value['msd_school_name']?></td>
+                                        <td><?php echo $value['msd_school_code']?></td>
                                         <td contenteditable='true'><?php echo $value['msd_state']?></td>
                                         <td><?php echo $value['msd_region_name']?></td>
                                         <td><?php echo $value['msd_region_code']?></td>
                                         <td><?php echo $value['msd_anchal_name']?></td>
                                         <td><?php echo $value['msd_anchal_code']?></td>
-                                        <td><?php echo $value['msd_school_name']?></td>
-                                        <td><?php echo $value['msd_school_code']?></td>
+                                        
+                                        
                                         <td><?php echo $value['mfc_desc']?></td>
                                         </tr>
                                     <?php $i++;} ?>
@@ -102,7 +148,7 @@
 
                                 <div class="form-actions">
                                   <img id="submitLoading" style="display:none;" src="<?=base_url()."assets/img/loading.gif"?>" alt="">
-                                  <input type="submit" name="submitThread" id="submit" class="btn btn-success" value="Submit">
+                                  <input type="button" name="submitThread" id="submit" class="btn btn-success" value="Submit">
                                 </div>
                             </form>
                             <!-- END FORM-->
@@ -124,23 +170,42 @@
         var BASE_URL="<?php echo $base_url; ?>";
 
     $("#select-all").click(function() {
-        $(".checkbox").prop("checked", $(this).prop("checked"));
+        $("input[type='checkbox']").prop("checked", $(this).prop("checked"));
         });
+
     $("#submit").click(function() {
 
-        var fundingchapter =$('#donorID').val();
-        let arr = [];
+        window.donorID =$('#donorID').val();
+        window.arr = [];
+        window.htmlStr='<tr>';
         let checkboxes = document.querySelectorAll("input[type='checkbox']:checked");
-         for (let i = 0 ; i < checkboxes.length; i++) {
-          arr.push(checkboxes[i].value)
-         }
-        var schoolData=JSON.stringify(arr);
-        schoolData=encodeURIComponent(window.btoa(schoolData));
-        window.location=BASE_URL+"fundingChapter/confirmFundingChapterMapping?fc="+fundingchapter+"&sc="+schoolData;
-      }); 
-    
-    });
+         for (let i = 1 ; i <= checkboxes.length; i++) {
+          window.arr.push(checkboxes[i-1].value);
+          window.htmlStr=window.htmlStr+'<td>'+checkboxes[i-1].value+'</td>';
 
-    
+          if(i % 3 == 0 && i != checkboxes.length)
+                window.htmlStr=window.htmlStr+'</tr><tr>';
+          if(i == checkboxes.length)
+          {
+                window.htmlStr=window.htmlStr+'</tr>';
+          }
+
+         }
+        window.schoolData=JSON.stringify(window.arr);
+        $(".selectedschools").html(window.htmlStr)
+          $("#myModal").modal('show');
+      });
+
+    $(".confirmsubmit").click(function() {
+       $.ajax({
+                url: BASE_URL+"donor/mapDonor",
+                data: {'schoolData': window.schoolData, 'donor': window.donorID},
+                type: 'POST', 
+                success: function(result){
+                    location.reload(true);
+                }
+            });
+   });
+    });
 </script>
 <?php echo $footer; ?>

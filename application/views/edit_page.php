@@ -94,7 +94,7 @@
                                 <tbody>
                                 <?php foreach($schoolList as $school){ ?>
                                     <tr>
-                                        <td><a Class='test' href="/fts/administration/edit_values/<?php echo $school['msd_school_code']?>" style='padding:5px; border: 2px solid red; border-radius: 5px; font-size:20px;'><i class='icon-edit'></i></a></td>
+                                        <td><a Class='test' href="/fts/sif/edit_values/<?php echo $sanchcode?>/<?php echo $school['msd_school_code']?>" style='padding:5px; border: 2px solid red; border-radius: 5px; font-size:20px;'><i class='icon-edit'></i></a></td>
 
                                         <td><?php echo $school['mfc_desc']; ?></td>
                                         <td><?php echo $school['msd_csr']; ?></td>
@@ -112,8 +112,8 @@
                                         <td><?php echo $school['msd_upsanch_code']; ?></td>
                                         <td><?php echo $school['msd_school_code']; ?></td>
                                         <td></td>
-                                        <td><?php echo $school['md_macd_name']; ?></td>
-                                        <td><?php echo $school['msd_school_name']; ?></td>
+                                        <td><?php echo $school['md_name']; ?></td>
+                                        <td><?php echo $school['md_code']; ?></td>
                                         <td><?php echo $school['msd_Teacher']; ?></td>
                                         <td><?php echo $school['msd_teacher_sex']; ?></td>
                                         <td><?php echo $school['msd_Boys']; ?></td>

@@ -28,7 +28,7 @@
                             <h4><i class="icon-upload"></i><?php echo $schoolcode; ?> school info</h4>
                         </div>
                         <div class="widget-body form" >
-                           <form action="<?php echo base_url()?>administration/uploadSifEditdata" class="form-horizontal" method="POST" enctype="multipart/form-data">
+                           <form action="<?php echo base_url()?>sif/uploadSifEditdata/<?php echo $sanchcode ?>" class="form-horizontal" method="POST" enctype="multipart/form-data">
             <!-- BEGIN FORM  <?php echo $schoolcode; ?>-->
                               <?php foreach($schoolList as $school){ ?>
                               <div class="control-group">

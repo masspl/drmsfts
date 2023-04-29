@@ -1,3 +1,41 @@
+<style type="text/css">
+    .selectedschools tr td {
+        padding: 15px 0;
+        text-align: center;
+        width: 33.33%;
+     }
+ </style>
+ <div id="myModal" class="modal fade" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="display: flex; justify-content: space-between;">
+                    <h5 class="modal-title"></h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                   <table style="width: 100%;">
+                    <thead class="smodalsheades" style="border-bottom: 1px solid rgba(0,0,0,0.2);">
+                       <tr>
+                        <th>Monitoring Chapter:  <?php echo $monitoringchapter[0]['mmc_desc']; ?></th>
+                           <th>Funding Chapter:  <?php echo $fundingchapter[0]['mfc_desc']; ?></th>
+                           <th>Region:  <?php echo $region; ?></th>
+                           <th>Anchal: <?php echo $anchal; ?></th>
+                       </tr>
+                       </thead>
+              
+
+                       <tbody class="selectedschools">
+                           
+                       </tbody>
+                   </table>
+                </div>
+                <div class="modal-footer" style="text-align: center">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Go Back</button>
+                    <button type="button" class="btn btn-primary confirmsubmit">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 <?php echo $header;?>
 <div id="container" class="row-fluid">
@@ -26,14 +64,14 @@
             <div class="row-fluid">
                 <div class="span12">
                     <h3 class="page-title">
-                        Funding Chapter Allocation
+                        Chapter Allocation
                     </h3>
                     <ul class="breadcrumb">
                         <li>
                             <a href="<?php echo base_url() ?>drm#"><i class="icon-home"></i></a><span class="divider">&nbsp;</span>
                         </li>
-                        <li><a href="<?php echo base_url() ?>fundingChapter/mapFunding/">FC Allocation</a><span class="divider-last">&nbsp;</span></li>
-                        <li><a href="<?php echo base_url() ?>fundingChapter/mapFunding/">Deallocate Funding Chapter</a><span class="divider-last ">&nbsp;</span></li>
+                        <li><a href="<?php echo base_url() ?>fundingChapter/mapFunding/">Chapter Allocation</a><span class="divider-last">&nbsp;</span></li>
+                        <!-- <li><a href="<?php echo base_url() ?>fundingChapter/mapFunding/">Deallocate Funding Chapter</a><span class="divider-last ">&nbsp;</span></li> -->
                     </ul>
                 </div>
             </div>
@@ -49,41 +87,57 @@
                         </div>
                         <div class="widget-body form">
                             <!-- BEGIN FORM-->
-                            <form action="<?php echo base_url() ?>fundingChapter/confirmFundingChapterMapping" class="form-horizontal" method="POST" enctype="multipart/form-data" onsubmit="">
+                            <form action="#" class="form-horizontal" method="POST" enctype="multipart/form-data" onsubmit="">
                             
+                            <div class="control-group">
+                                  <span class="control-label">Monitoring Chapter</span>
+                                  <span class="fundingChapterDesc" style="font-weight: bold;" id="donordesc"> <?php echo $monitoringchapter[0]['mmc_desc']; ?> </span>
+                                    <input type="text" name="monitoringchapter" value="<?php echo $monitoringchapter[0]['mmc_id']?>" id="monitoringchapterid" style="display: none;">
+                              </div>
+
                              <div class="control-group">
                                   <span class="control-label">Funding Chapter</span>
-                                    <input type="text" name="fundingChapterDesc" value="<?php echo $fundingchapter[0]['mfc_desc']?>" id="donordesc" disabled>
-                                    <!-- <input type="text" name="fundingchapter" value="<?php echo $fundingchapter[0]['mfc_id']?>" id="donorID" disabled> -->
+                                  <span class="fundingChapterDesc" style="font-weight: bold;" id="donordesc"> <?php echo $fundingchapter[0]['mfc_desc']; ?> </span>
+                                    <input type="text" name="fundingchapter" value="<?php echo $fundingchapter[0]['mfc_id']?>" id="fundingchapterid" style="display: none;">
+                              </div>
+                              <div class="control-group">
+                                  <span class="control-label">Region</span>
+                                  <span class="region" style="font-weight: bold;"> <?php echo $region; ?> </span>
+                              </div>
+                              <div class="control-group">
+                                  <span class="control-label">Anchal</span>
+                                  <span class="anchal" style="font-weight: bold;"> <?php echo $anchal; ?> </span>
                               </div>
                              <table class="table control-group">
                                 <h3>School Details</h3>
-                                <thead style="border: 2px solid black;">
+                                <thead style="">
                                   <tr>
                                     <th>Select<input type="checkbox" id="select-all" name="" value=""></th>
                                     <th>Sl.No</th>
+                                    <th>School Name</th>
+                                    <th>School Code</th>
                                     <th>State</th>
                                     <th>Region Name</th>
                                     <th>Region Code</th>
                                     <th>Anchal Name</th>
                                     <th>Anchal Code</th>
-                                    <th>School Name</th>
-                                    <th>School Code</th>
+                                    
                                       
                                   </tr>
                               </thead>
                                 <tbody>
                                     <?php $i=1;foreach ($schoolDetails as $key => $value) {?>
                                     <tr>
-                                        <td><input type='checkbox' id='checkbox' name='' value="<?php echo $value['msd_school_code']?>" ></td>
+                                        <td><input type='checkbox' id='checkbox' name='check' value="<?php echo $value['msd_school_code']?>" style="opacity: 1 !important;"></td>
                                         <td><?php echo  $i ?></td>
+                                        <td><?php echo $value['msd_school_name']?></td>
+                                        <td><?php echo $value['msd_school_code']?></td>
                                         <td contenteditable='true'><?php echo $value['msd_state']?></td>
                                         <td><?php echo $value['msd_region_name']?></td>
                                         <td><?php echo $value['msd_region_code']?></td>
                                         <td><?php echo $value['msd_anchal_name']?></td>
                                         <td><?php echo $value['msd_anchal_code']?></td>
-                                        <td><?php echo $value['msd_school_name']?></td>
-                                        <td><?php echo $value['msd_school_code']?></td>
+                                        
                                         </tr>
                                     <?php $i++;} ?>
                                 </tbody>
@@ -93,9 +147,12 @@
                                 <div class="form-actions">
                                   <img id="submitLoading" style="display:none;" src="<?=base_url()."assets/img/loading.gif"?>" alt="">
                                   <input type="button" name="submitThread" id="submit" class="btn btn-success" value="Submit">
+
                                 </div>
+
                             </form>
                             <!-- END FORM-->
+
                         </div>
                     </div>
                     <!-- END SAMPLE FORM widget-->
@@ -114,21 +171,56 @@
         var BASE_URL="<?php echo $base_url; ?>";
 
     $("#select-all").click(function() {
+        console.log($(this).prop("checked"));
         $("input[type='checkbox']").prop("checked", $(this).prop("checked"));
         });
 
+   
+
     $("#submit").click(function() {
 
-        var fundingchapter =$('#donorID').val();
-        let arr = [];
-        let checkboxes = document.querySelectorAll("input[type='checkbox']:checked");
-         for (let i = 0 ; i < checkboxes.length; i++) {
-          arr.push(checkboxes[i].value)
+        window.fundingchapter =$('#fundingchapterid').val();
+        window.monitoringchapter =$('#monitoringchapterid').val();
+        // alert(window.fundingchapter)
+         window.arr = [];
+         window.htmlStr='<tr>';
+        let checkboxes = document.querySelectorAll("input[name='check']:checked");
+        // console.log(checkboxes);
+         for (let i = 1 ; i <= checkboxes.length; i++) {
+            // console.log(checkboxes[i-1].value)
+          window.arr.push(checkboxes[i-1].value);
+          window.htmlStr=window.htmlStr+'<td>'+checkboxes[i-1].value+'</td>';
+
+          if(i % 3 == 0 && i != checkboxes.length)
+                window.htmlStr=window.htmlStr+'</tr><tr>';
+          if(i == checkboxes.length)
+          {
+                window.htmlStr=window.htmlStr+'</tr>';
+          }
+
          }
-        var schoolData=JSON.stringify(arr);
-        schoolData=encodeURIComponent(window.btoa(schoolData));
-        window.location=BASE_URL+"fundingChapter/confirmFundingChapterMapping?fc="+fundingchapter+"&sc="+schoolData;
+
+        window.schoolData=JSON.stringify(window.arr);
+
+            
+        $(".selectedschools").html(window.htmlStr)
+          $("#myModal").modal('show');
+
+
+     
       });    
+     $(".confirmsubmit").click(function() {
+       $.ajax({
+                url: BASE_URL+"fundingChapter/uploadFundingChapter",
+                data: {'schoolData': window.schoolData, 'fundingchapter': window.fundingchapter,'monitoringchapter':window.monitoringchapter},
+                type: 'POST', 
+                success: function(result){
+                    location.reload(true);
+                }
+            });
+   });
+
+
     });
 
 </script>

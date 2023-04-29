@@ -192,7 +192,7 @@
                 });
     document.getElementById("submit").onclick = function () {
         var sanchcode = window.sanch;
-        location.href = BASE_URL+"administration/edit_page/"+sanchcode;
+        location.href = BASE_URL+"sif/edit_page/"+sanchcode;
     };
     // $(".test").click(function(){
     //     var schoolCode=$(this).val();

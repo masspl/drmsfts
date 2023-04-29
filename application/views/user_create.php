@@ -29,7 +29,7 @@
                         </div>
                         <div class="widget-body form" >
             <!-- BEGIN FORM  <?php echo $schoolcode; ?>-->
-                        <form action="<?php echo base_url()?>administration/uploadSifEditdata" class="form-horizontal" method="POST" enctype="multipart/form-data">
+                        <form action="<?php echo base_url()?>users/uploadUserData" class="form-horizontal" method="POST" enctype="multipart/form-data">
                               <div class="control-group">
                                   <span class="control-label">USER NAME&nbsp;&nbsp;&nbsp;</span>
                                   <span><input type="text" name="username" value="" id="donorID"></span>
@@ -48,20 +48,20 @@
                                   <span><input type="text" name="email" id="donorID"></span>
                               
                               </div><div class="control-group">
-                                  <span class="control-label">TYPE-1&nbsp;&nbsp;&nbsp;</span>
+                                  <span class="control-label">Admin for Monitoring Chapter&nbsp;&nbsp;&nbsp;</span>
                                   <span><input type="checkbox" name="user_roll_A" id="donorID"></span>
                               
                               </div>
                               <div class="control-group">
-                                  <span class="control-label">TYPE-2&nbsp;&nbsp;&nbsp;</span>
+                                  <span class="control-label">Admin for Funding Chapter&nbsp;&nbsp;&nbsp;</span>
                                   <span><input type="checkbox" name="user_roll_B"  id="donorID"></span>
                               
                               </div><div class="control-group">
-                                  <span class="control-label">TYPE-3&nbsp;&nbsp;&nbsp;</span>
+                                  <span class="control-label">Donor Admin&nbsp;&nbsp;&nbsp;</span>
                                   <span><input type="checkbox" name="user_roll_c"  id="donorID"></span>
                               </div>
                               <div class="control-group">
-                                  <span class="control-label">TYPE-4&nbsp;&nbsp;&nbsp;</span>
+                                  <span class="control-label">Admin for Sif Edit&nbsp;&nbsp;&nbsp;</span>
                                   <span><input type="checkbox" name="user_roll_D"  id="donorID"></span>
                               </div>
                               <div class="form-actions">
@@ -75,44 +75,8 @@
     </div>
     <!-- END PAGE -->
 </div>
+</div>
+</div>
 <!-- END CONTAINER -->
 <?php echo $forminputJS; ?>
-<script type="text/javascript">
-    $(document).ready(function () {
-        var BASE_URL="<?php echo $base_url; ?>";
-        
-    //     
-    // $(".fund").change(function(){
-    //             var fundingchapter=$(this).val();
-    //             // var fundingchapter=xyz.trim().replace(/\s+/g, '_');
-    //             // console.log(fundingchapter);
-    //             $.ajax({
-    //                 url: BASE_URL+"administration/getSchoolByFundingchapter/"+fundingchapter+"/1", 
-    //                 success: function(result){
-    //                console.log(fundingchapter);
-    //                     $("tbody").html(result);
-    //                 }
-    //             });
-    //         });
-
-      $("#submit").click(function(){
-                  var schoolCode="<?php echo $schoolcode; ?>";
-                  alert(schoolCode);
-                  let arr = [];
-                  let checkboxes = document.querySelectorAll("input[type='text']");
-                  for (let i = 0 ; i < checkboxes.length; i++) {
-                    arr.push(checkboxes[i].value)
-                  }
-                var schoolData=JSON.stringify(arr);
-            //     $.ajax({
-            //     url: BASE_URL+"administration/uploadFundingChapter",
-            //     // data: {'schoolData': schoolData, 'schoolCode': schoolCode},
-            //     type: 'POST', 
-            //     success: function(result){
-            //     console.log(result);
-            //         // $("#tbody").html(result);
-            //     }
-            // });
-        });
-</script>
 <?php echo $footer; ?>
